@@ -1,3 +1,40 @@
 #root {
-  color: red;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  color: rgb(9, 127, 62);
+  background-color: palegreen;
+  grid-auto-rows: 1fr;
+}
+
+.episode {
+  border: 10px solid green;
+  padding: 30px;
+  background-color: palegoldenrod;
+}
+
+.episode h2 {
+  padding: 5px;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.episode img {
+  width: 100%;
+  display: block;
+  padding: 1px;
+}
+
+.episode p {
+  padding: 5px;
+  font-size: 18px;
+  font-color: darkgreen;
+  font-weight: bold;
+}
+
+.episode .summary {
+  padding: 5px;
+  font-size: 20px;
 }
