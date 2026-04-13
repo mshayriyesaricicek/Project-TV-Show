@@ -4,19 +4,20 @@
   gap: 20px;
   padding: 20px;
   color: rgb(9, 127, 62);
-  background-color: palegreen;
+  background-color: #20ba20;
   grid-auto-rows: 1fr;
 }
 
 .episode {
-  border: 10px solid green;
+  border: 10px solid #032203;
   padding: 30px;
-  background-color: palegoldenrod;
+  background-color: rgb(244, 241, 219);
 }
 
 .episode h2 {
   padding: 5px;
-  font-size: 26px;
+  font-size: 33px;
+  color: hwb(120 2% 71%);
   font-weight: bold;
   text-align: center;
 }
@@ -29,12 +30,7 @@
 
 .episode p {
   padding: 5px;
-  font-size: 18px;
-  font-color: darkgreen;
+  font-size: 25px;
+  color: hwb(149 5% 79%);
   font-weight: bold;
-}
-
-.episode .summary {
-  padding: 5px;
-  font-size: 20px;
 }
