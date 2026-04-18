@@ -9,18 +9,34 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <p id="header">TV Show Project</p>
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search episodes..."
+      aria-label="Search episodes"
+    />
+    <label for="episodeSelect">Select episode:</label>
+    <select id="episodeSelect">
+      <option value="all">All episodes</option>
+    </select>
+    <button id="clearFilters">Clear Filters</button>
+    <p id="episode-count"></p>
+    <p id="helperMessage"></p>
 
+    <div id="root"></div>
+    <p id="activeFilters"></p>
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+
     <script src="episodes.js"></script>
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
   </body>
   <footer>
-  <h2>
-    This data has originally come from 
-    <a href="https://www.tvmaze.com" target="_blank">TVMaze.com</a>
-  </h2>
-</footer>
+    <h2>
+      This data has originally come from
+      <a href="https://www.tvmaze.com" target="_blank">TVMaze.com</a>
+    </h2>
+  </footer>
 </html>
