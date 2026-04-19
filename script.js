@@ -6,13 +6,21 @@ function setup() {
 
   displayEpisodes(allEpisodes);
   populateEpisodes(allEpisodes);
+  updateEpisodeCount(allEpisodes);
 
   const searchInput = document.getElementById("searchInput");
   const episodeSelect = document.getElementById("episodeSelect");
   const clearButton = document.getElementById("clearFilters");
 
-  searchInput.addEventListener("input", render);
-  episodeSelect.addEventListener("change", render);
+  searchInput.addEventListener("input", () => {
+    episodeSelect.value = "all"; // reset dropdown
+    render();
+  });
+
+  episodeSelect.addEventListener("change", () => {
+    searchInput.value = ""; // clear search
+    render();
+  });
 
   clearButton.addEventListener("click", () => {
     searchInput.value = "";
@@ -61,6 +69,11 @@ function displayEpisodes(episodeList) {
   }
 }
 
+function updateEpisodeCount(episodes) {
+  const episodeCountElement = document.getElementById("episode-count");
+  episodeCountElement.textContent = `Showing ${episodes.length} episode(s)`;
+}
+
 function render() {
   const searchInput = document.getElementById("searchInput");
   const episodeSelect = document.getElementById("episodeSelect");
@@ -71,21 +84,29 @@ function render() {
   const searchTerm = searchInput.value.toLowerCase();
   const selectedEpisode = episodeSelect.value;
 
-  const filteredEpisodes = allEpisodes.filter((episode) => {
-    const episodeCode = formatEpisodeCode(episode.season, episode.number);
-    const name = (episode.name || "").toLowerCase();
-    const summary = (episode.summary || "").toLowerCase();
+  let filteredEpisodes = allEpisodes;
 
-    const matchesSearch =
-      name.includes(searchTerm) || summary.includes(searchTerm);
+  // If dropdown is used → ignore search
+  if (episodeSelect.value !== "all") {
+    filteredEpisodes = allEpisodes.filter((episode) => {
+      const episodeCode = formatEpisodeCode(episode.season, episode.number);
+      return episodeCode === episodeSelect.value;
+    });
+  }
+  // Else if search is used → ignore dropdown
+  else if (searchTerm !== "") {
+    filteredEpisodes = allEpisodes.filter((episode) => {
+      const name = (episode.name || "").toLowerCase();
+      const summary = (episode.summary || "")
+        .replace(/<[^>]*>/g, "")
+        .toLowerCase();
 
-    const matchesDropdown =
-      selectedEpisode === "all" || episodeCode === selectedEpisode;
-
-    return matchesSearch && matchesDropdown;
-  });
+      return name.includes(searchTerm) || summary.includes(searchTerm);
+    });
+  }
 
   displayEpisodes(filteredEpisodes);
+  updateEpisodeCount(filteredEpisodes);
 
   const hasSearch = searchInput.value !== "";
   const hasDropdown = episodeSelect.value !== "all";
