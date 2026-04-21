@@ -2,8 +2,6 @@
 let allEpisodes = [];
 
 function setup() {
-  allEpisodes = getAllEpisodes();
-
   displayEpisodes(allEpisodes);
   populateEpisodes(allEpisodes);
   updateEpisodeCount(allEpisodes);
@@ -130,6 +128,15 @@ function render() {
   }
 }
 
+async function loadEpisodes() {
+  const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
+  const data = await response.json();
+  allEpisodes = data;
+  setup();
+}
+
+loadEpisodes();
+
 function formatEpisodeCode(season, number) {
   return `S${String(season).padStart(2, "0")}E${String(number).padStart(2, "0")}`;
 }
@@ -154,5 +161,3 @@ function populateEpisodes(episodes) {
     episodeSelect.appendChild(option);
   });
 }
-
-window.onload = setup;
