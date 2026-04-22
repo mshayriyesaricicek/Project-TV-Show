@@ -14,7 +14,7 @@ Have a discussion about your answers to these questions. In class, together, giv
 
 ## Refactoring
 
-Like with level 200, feel free to change anything in your codebase which you think will make it easier to work with, or to build new features.
+Like with level 200, feel free to chaEpnge anything in your codebase which you think will make it easier to work with, or to build new features.
 
 Have your partner review any changes you have, and make sure they understand them.
 
