@@ -34,3 +34,26 @@
   color: hwb(149 5% 79%);
   font-weight: bold;
 }
+
+.no-results {
+  background-color: #ffe6e6; /* light red background */
+  color: #900; /* dark red text */
+  border: 10px solid #cc0000;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 0px 0;
+  padding: 40px 1px 1px 1px;
+  line-height: 0.2;
+  height: 20%;
+}
+
+label {
+  position: absolute;
+  left: -9999px;
+}
+
+#root {
+  min-height: 300px;
+}
