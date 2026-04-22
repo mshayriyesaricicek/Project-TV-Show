@@ -1,24 +1,34 @@
 #root {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-  color: rgb(9, 127, 62);
+  gap: 10px;
+  justify-items: center;
+  margin: auto;
+  max-width: 90%;
+  min-height: 300px;
   background-color: #20ba20;
-  grid-auto-rows: 1fr;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 20px;
+  background-color: #20ba20;
+}
+
+#episodeSelect {
+  width: 17%;
 }
 
 .episode {
   border: 10px solid #032203;
-  padding: 30px;
+  padding: 8px;
   background-color: rgb(244, 241, 219);
 }
 
 .episode h2 {
   padding: 5px;
-  font-size: 33px;
+  font-size: 25px;
   color: hwb(120 2% 71%);
-  font-weight: bold;
   text-align: center;
 }
 
@@ -30,9 +40,8 @@
 
 .episode p {
   padding: 5px;
-  font-size: 25px;
+  font-size: 20px;
   color: hwb(149 5% 79%);
-  font-weight: bold;
 }
 
 .no-results {
@@ -52,8 +61,4 @@
 label {
   position: absolute;
   left: -9999px;
-}
-
-#root {
-  min-height: 300px;
 }

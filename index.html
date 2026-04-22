@@ -11,14 +11,27 @@
   <body>
     <main>
       <p id="header">TV Show Project</p>
+      <!-- Show search -->
       <input
         type="text"
-        id="searchInput"
-        placeholder="Search episodes..."
+        id="showSearchInput"
+        placeholder="Search shows"
+        aria-label="Search shows"
+      />
+      <button id="searchShowsButton">Search Shows</button>
+
+      <!-- Episode search -->
+      <input
+        type="text"
+        id="episodeSearchInput"
+        placeholder="Search episodes"
         aria-label="Search episodes"
       />
+      <button id="searchEpisodesButton">Search Episodes</button>
       <label for="episodeSelect">Select episode:</label>
       <select id="episodeSelect"></select>
+      <label for="showSelect">Select show:</label>
+      <select id="showSelect"></select>
       <button id="clearFilters">Clear Filters</button>
       <p id="episode-count"></p>
       <p id="helperMessage"></p>
