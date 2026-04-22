@@ -1,14 +1,13 @@
 #root {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
+  gap: 10px;
   justify-items: center;
   margin: auto;
   max-width: 90%;
   min-height: 300px;
   background-color: #20ba20;
   box-sizing: border-box;
-  padding: 10px;
 }
 
 body {
@@ -21,7 +20,7 @@ body {
 }
 
 .episode {
-  border: 5px solid #032203;
+  border: 10px solid #032203;
   padding: 8px;
   background-color: rgb(244, 241, 219);
 }
@@ -43,55 +42,6 @@ body {
   padding: 5px;
   font-size: 20px;
   color: hwb(149 5% 79%);
-}
-
-.show-card {
-  border: 5px solid #032203;
-  padding: 1x;
-  background-color: rgb(244, 241, 219);
-  text-align: center;
-}
-
-.show-card h2 {
-  padding: 5px;
-  font-size: 20px;
-  color: hwb(120 2% 71%);
-  text-align: center;
-}
-
-.show-card img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: contain;
-  object-position: center top;
-  border-radius: 6px;
-  padding: 3;
-}
-
-.show-card .genres {
-  font-size: 15px;
-  margin: 4px 0;
-}
-
-.show-card .summary {
-  max-height: 120px;
-  overflow-y: auto;
-  text-align: left;
-  padding: 12px;
-  font-size: 16px;
-  line-height: 1.4;
-  border-top: 1px solid #eee;
-  color: hwb(149 5% 79%);
-  margin-top: 1px;
-}
-
-.info-row {
-  display: flex;
-  gap: 5px;
-  justify-content: space-between;
-  font-size: 15px;
-  margin: 10px 30px;
-  margin-bottom: 1px;
 }
 
 .no-results {

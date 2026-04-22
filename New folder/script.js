@@ -1,7 +1,6 @@
 //You can edit ALL of the code here
 let allShows = [];
 let allEpisodes = [];
-let episodeCache = {};
 
 // Display shows as cards
 function displayShows(shows) {
@@ -12,10 +11,6 @@ function displayShows(shows) {
     const card = document.createElement("div");
     card.classList.add("show-card");
 
-    card.addEventListener("click", () => {
-      loadEpisodes(show.id);
-    });
-
     const title = document.createElement("h2");
     title.textContent = show.name;
 
@@ -23,37 +18,8 @@ function displayShows(shows) {
     img.src = show.image?.medium || "";
     img.alt = show.name;
 
-    const summary = document.createElement("p");
-    summary.innerHTML = show.summary || "";
-    summary.classList.add("summary");
-
-    // Line 1: genres
-    const genres = document.createElement("p");
-    genres.textContent = `Genres: ${show.genres.join(", ")}`;
-    genres.classList.add("genres");
-
-    // Line 2 container
-    const infoRow = document.createElement("div");
-    infoRow.classList.add("info-row");
-
-    const status = document.createElement("span");
-    status.textContent = `Status: ${show.status}`;
-
-    const runtime = document.createElement("span");
-    runtime.textContent = `Runtime: ${show.runtime} mins`;
-
-    const rating = document.createElement("span");
-    rating.textContent = `Rating: ${show.rating?.average || "N/A"}`;
-
-    infoRow.appendChild(status);
-    infoRow.appendChild(runtime);
-    infoRow.appendChild(rating);
-
     card.appendChild(title);
     card.appendChild(img);
-    card.appendChild(genres);
-    card.appendChild(infoRow);
-    card.appendChild(summary);
 
     rootElem.appendChild(card);
   }
@@ -157,22 +123,12 @@ async function loadShows() {
 }
 
 // Load episodes for a show
-async function loadEpisodes(showId) {
-  //  If already fetched, use cache
-  if (episodeCache[showId]) {
-    allEpisodes = episodeCache[showId];
-    populateEpisodes(allEpisodes);
-    displayEpisodes(allEpisodes);
-    return;
-  }
 
-  // Otherwise fetch
+async function loadEpisodes(showId) {
   const response = await fetch(
     `https://api.tvmaze.com/shows/${showId}/episodes`,
   );
   const data = await response.json();
-
-  episodeCache[showId] = data; // store
   allEpisodes = data;
 
   populateEpisodes(allEpisodes);
@@ -182,16 +138,9 @@ async function loadEpisodes(showId) {
 // Search shows by title
 function searchShows() {
   const term = document.getElementById("showSearchInput").value.toLowerCase();
-
-  const filteredShows = allShows.filter((show) => {
-    const name = show.name.toLowerCase();
-    const genres = show.genres.join(" ").toLowerCase();
-    const summary = (show.summary || "").replace(/<[^>]*>/g, "").toLowerCase();
-
-    return (
-      name.includes(term) || genres.includes(term) || summary.includes(term)
-    );
-  });
+  const filteredShows = allShows.filter((show) =>
+    show.name.toLowerCase().includes(term),
+  );
   displayShows(filteredShows);
 }
 
@@ -236,7 +185,7 @@ function clearFilters() {
   defaultOption.textContent = "Select a show to view episodes";
   episodeSelect.appendChild(defaultOption);
 
-  //Display all shows
+  // Display all shows
   displayShows(allShows);
 
   //update episode count to 0
@@ -269,22 +218,6 @@ window.addEventListener("DOMContentLoaded", () => {
       displayEpisodes(filtered);
     }
     document.getElementById("episodeSearchInput").value = "";
-  });
-
-  // Reset episode dropdown
-  document.getElementById("backToShows").addEventListener("click", () => {
-    allEpisodes = [];
-    const showSelect = document.getElementById("showSelect");
-    showSelect.value = "all";
-    const episodeSelect = document.getElementById("episodeSelect");
-    episodeSelect.innerHTML = "";
-    const option = document.createElement("option");
-    option.value = "all";
-    option.textContent = "Select a show to view episodes";
-    episodeSelect.appendChild(option);
-    document.getElementById("episodeSearchInput").value = "";
-    displayShows(allShows);
-    updateEpisodeCount([]);
   });
 
   // Search buttons
