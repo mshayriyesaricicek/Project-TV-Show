@@ -181,6 +181,7 @@ async function loadEpisodes(showId) {
 
 // Search shows by title
 function searchShows() {
+  document.getElementById("showSelect").value = "all";
   const term = document.getElementById("showSearchInput").value.toLowerCase();
 
   const filteredShows = allShows.filter((show) => {
@@ -197,6 +198,7 @@ function searchShows() {
 
 // Search episodes by name/summary
 function searchEpisodes() {
+  document.getElementById("episodeSelect").value = "all";
   const term = document
     .getElementById("episodeSearchInput")
     .value.toLowerCase();
@@ -287,13 +289,13 @@ window.addEventListener("DOMContentLoaded", () => {
     updateEpisodeCount([]);
   });
 
-  // Search buttons
+  //Search showsand episodes
   document
-    .getElementById("searchShowsButton")
-    .addEventListener("click", searchShows);
+    .getElementById("showSearchInput")
+    .addEventListener("input", searchShows);
   document
-    .getElementById("searchEpisodesButton")
-    .addEventListener("click", searchEpisodes);
+    .getElementById("episodeSearchInput")
+    .addEventListener("input", searchEpisodes);
 
   //Clear filters
   document
